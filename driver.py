@@ -16,9 +16,9 @@ class Driver:
         self.x += 1
         return self.x
     def moveUp(self, K_UP):
-	    self.y +=1
-	    return self.y
+	self.y +=1
+	return self.y
     def moveDown(self,K_DOWN):
-	    self.y-=1
-	    return self.y
-    def testing
+	self.y-=1
+	return self.y
+	
