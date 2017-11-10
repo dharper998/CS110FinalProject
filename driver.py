@@ -8,10 +8,17 @@ class Driver:
     def setupCar(self):
         gameDisplay.blit(self.carimage, (self.x, self.y))
 
-    def moveLeft(self):
-        self.x += 5
+    def moveLeft(self, K_LEFT):
+        self.x -= 1
         return self.x
 
-    def moveRight(self):
-        self.x -= 5
+    def moveRight(self,K_RIGHT):
+        self.x += 1
         return self.x
+    def moveUp(self, K_UP):
+	self.y +=1
+	return self.y
+    def moveDown(self,K_DOWN):
+	self.y-=1
+	return self.y
+	
