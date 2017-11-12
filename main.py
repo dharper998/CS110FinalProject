@@ -2,10 +2,12 @@ import pygame
 from pygame.locals import *
 import time
 import random
-import gameLoop
-import driver
-import traffic
+import gameSetup
+#import gameLoop
+#import driver
+#import traffic
 
 def main():
-    GameSetup.setup()
+    game = gameSetup.GameSetup()
+    game.setup()
 main()
