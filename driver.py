@@ -17,7 +17,15 @@ class Driver:
         return self.x
     def moveUp(self, K_UP):
 	    self.y +=1
+<<<<<<< HEAD
         return self.y
     def moveDown(self,K_DOWN):
 	    self.y-=1
 	    return self.y
+=======
+	    return self.y
+    def moveDown(self,K_DOWN):
+	    self.y-=1
+	    return self.y
+    def testing
+>>>>>>> 4658894ce5057cb9046a8329ea17eaf166c5289f
