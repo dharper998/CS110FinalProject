@@ -12,9 +12,9 @@ def main():
     game = gameSetup.GameSetup()
     game.setup()
 
-    #Creates seperate variable for disply and creates drivercar object
+    #Creates seperate variable for display and creates drivercar object
     gamedisplay = game.gamedisplay
-    drivercar = driver.Driver(200, 200)
+    drivercar = driver.Driver(500, 300)
 
     #Creates a loop object and runs the loop method
     gameloop = gameLoop.GameLoop(gamedisplay, drivercar)
