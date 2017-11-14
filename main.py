@@ -8,15 +8,15 @@ import driver
 #import traffic
 
 def main():
-    #create game object and run setup method
+    #Creates game object and runs setup method
     game = gameSetup.GameSetup()
     game.setup()
 
-    #create seperate variables for gamedisplay and drivercar to use as parameters
+    #Creates seperate variable for disply and creates drivercar object
     gamedisplay = game.gamedisplay
     drivercar = driver.Driver(200, 200)
 
-    #create loop object and run loop method
-    loop = gameLoop.GameLoop(gamedisplay, drivercar)
-    loop.loop()
+    #Creates a loop object and runs the loop method
+    gameloop = gameLoop.GameLoop(gamedisplay, drivercar)
+    gameloop.loop()
 main()
