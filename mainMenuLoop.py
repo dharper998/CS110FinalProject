@@ -6,14 +6,17 @@ class TitleScreen:
 		self.ColinCarx = 1850
 		self.stcdevenimage = pygame.image.load("steven_police.png")
 	def menu_loop(self):
-		self.gamedisplay.bit(self.stevenimage,(StevenCarx, y))		
+		self.gamedisplay.bit(self.stevenimage,(StevenCarx, y))
 		quit = False
 		while not quit:
 			for i in range(10):
 				StevenCarx += 10
 				self.gamedisplay.blit(self.stevenimage, (StevenCarx, y))
+
+        #########
 		while quit:
 			break
+        #########
 	def button(msg,x,y,w,h,ic,ac):
 		mouse = pygame.mouse.get_pos()
 		click = pygame.mouse.get_pressed()
