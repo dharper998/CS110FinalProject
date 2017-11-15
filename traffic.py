@@ -12,15 +12,3 @@ class Traffic(pygame.sprite.Sprite):
         self.imagelist = [self.trafficimage1, self.trafficimage2, self.trafficimage3, self.trafficimage4]
         self.randomimage = random.choice[imagelist]
         self.rect = self.trafficimage.get_rect()
-    def setuploop(self):
-
-    def lane1(self):
-
-
-    def lane2(self):
-
-
-    def lane3(self):
-
-
-    def lan4(self):
