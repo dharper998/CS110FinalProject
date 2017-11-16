@@ -11,19 +11,19 @@ class Traffic(pygame.sprite.Sprite):
         self.x = x
 
         #Chooses a random speed from 6 through 10 for the traffic object
-        self.speeds = [6, 7, 8, 9, 10]
+        self.speeds = [4, 5, 6, 7, 8]
         self.randomspeed = random.choice(self.speeds)
 
         #Chooses a random image for the traffic objects appearance
-        self.trafficimage1 = pygame.image.load("Black_viper.png")
-        self.trafficimage2 = pygame.image.load("Mini_van.png")
-        self.trafficimage3 = pygame.image.load("Mini_truck.png")
-        self.trafficimage4 = pygame.image.load("truck.png")
+        self.trafficimage1 = pygame.image.load('assets/' + "Black_viper.png").convert_alpha()
+        self.trafficimage2 = pygame.image.load('assets/' + "Mini_van.png").convert_alpha()
+        self.trafficimage3 = pygame.image.load('assets/' + "Mini_truck.png").convert_alpha()
+        self.trafficimage4 = pygame.image.load('assets/' + "truck.png").convert_alpha()
         self.imagelist = [self.trafficimage1, self.trafficimage2, self.trafficimage3, self.trafficimage4]
-        self.randomimage = random.choice(self.imagelist)
+        self.image = random.choice(self.imagelist)
 
         #Gets the appropriate rectangle for the object based on the chosen image
-        self.rect = self.randomimage.get_rect()
+        self.rect = self.image.get_rect()
 
 
     def drive(self):
@@ -34,5 +34,5 @@ class Traffic(pygame.sprite.Sprite):
         #Moves the object back to the origin position off the top of the screen and gives it a new random speed and image
         self.y = -200
         self.randomspeed = random.choice(self.speeds)
-        self.randomimage = random.choice(self.imagelist)
-        self.rect = self.randomimage.get_rect()
+        self.image = random.choice(self.imagelist)
+        self.rect = self.image.get_rect()

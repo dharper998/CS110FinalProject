@@ -3,21 +3,22 @@ class TitleScreen:
 	def __init__(self, gamedisplay):
 		self.gamedisplay = gamedisplay()
 		self.StevenCarx = -50
+        self.y = 300
 		self.ColinCarx = 1850
 		self.stcdevenimage = pygame.image.load("steven_police.png")
 	def menu_loop(self):
-		self.gamedisplay.bit(self.stevenimage,(StevenCarx, y))
+		self.gamedisplay.bit(self.stevenimage,(self.StevenCarx, self.y))
 		quit = False
 		while not quit:
 			for i in range(10):
-				StevenCarx += 10
-				self.gamedisplay.blit(self.stevenimage, (StevenCarx, y))
+				self.StevenCarx += 10
+				self.gamedisplay.blit(self.stevenimage, (self.StevenCarx, self.y))
 
         #########
 		while quit:
 			break
         #########
-	def button(msg,x,y,w,h,ic,ac):
+	def button(self, msg , x, y, w, h, ic, ac):
 		mouse = pygame.mouse.get_pos()
 		click = pygame.mouse.get_pressed()
 		if x+w > mouse[0] > x and y+h > mouse[1] > y:

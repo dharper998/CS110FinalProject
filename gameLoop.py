@@ -64,11 +64,11 @@ class GameLoop:
             self.gamedisplay.fill((255, 255, 255))
 
             #Update the models
-            self.gamedisplay.blit(self.drivercar.driverimg, (self.drivercar.x, self.drivercar.y))
-            self.gamedisplay.blit(self.lane1.randomimage, (self.lane1.x, self.lane1.y))
-            self.gamedisplay.blit(self.lane2.randomimage, (self.lane2.x, self.lane2.y))
-            self.gamedisplay.blit(self.lane3.randomimage, (self.lane3.x, self.lane3.y))
-            self.gamedisplay.blit(self.lane4.randomimage, (self.lane4.x, self.lane4.y))
+            self.gamedisplay.blit(self.drivercar.image, (self.drivercar.x, self.drivercar.y))
+            self.gamedisplay.blit(self.lane1.image, (self.lane1.x, self.lane1.y))
+            self.gamedisplay.blit(self.lane2.image, (self.lane2.x, self.lane2.y))
+            self.gamedisplay.blit(self.lane3.image, (self.lane3.x, self.lane3.y))
+            self.gamedisplay.blit(self.lane4.image, (self.lane4.x, self.lane4.y))
 
 
             #Display the updated view

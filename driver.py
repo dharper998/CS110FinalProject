@@ -9,8 +9,8 @@ class Driver(pygame.sprite.Sprite):
         #Creates the driver object at the given location and sets its appearance to the taxi image
         self.x = x
         self.y = y
-        self.driverimg = pygame.image.load("taxi.png")
-        self.rect = self.driverimg.get_rect()
+        self.image = pygame.image.load('assets/' + 'taxi.png').convert_alpha()
+        self.rect = self.image.get_rect()
 
     def moveLeft(self):
         #Decreases the driver object's x value by 10, moving it left
