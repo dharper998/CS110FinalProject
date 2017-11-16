@@ -11,7 +11,7 @@ class Traffic(pygame.sprite.Sprite):
         self.x = x
 
         #Chooses a random speed from 6 through 10 for the traffic object
-        self.speeds = [4, 5, 6, 7, 8]
+        self.speeds = [2, 3, 4, 5, 6]
         self.randomspeed = random.choice(self.speeds)
 
         #Chooses a random image for the traffic objects appearance
@@ -32,7 +32,7 @@ class Traffic(pygame.sprite.Sprite):
 
     def reset(self):
         #Moves the object back to the origin position off the top of the screen and gives it a new random speed and image
-        self.y = -200
+        self.y = random.randrange(-1000, -200)
         self.randomspeed = random.choice(self.speeds)
         self.image = random.choice(self.imagelist)
         self.rect = self.image.get_rect()

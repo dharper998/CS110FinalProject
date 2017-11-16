@@ -3,8 +3,8 @@ from pygame.locals import *
 
 class GameSetup:
     def __init__(self):
-        self.display_width = 1000
-        self.display_height = 800
+        self.display_width = 840
+        self.display_height = 650
         self.gamedisplay = pygame.display.set_mode((self.display_width, self.display_height))
         self.clock = pygame.time.Clock()
 
