@@ -60,7 +60,18 @@ class GameLoop:
                         self.drivercar.moveLeft()
                     if event.key == pygame.K_RIGHT:
                         self.drivercar.moveRight()
-                    #if event.type == pygame.K_UP:
+                    if event.key == pygame.K_UP:
+                        self.background.speedup()
+                        self.lane1.speedup()
+                        self.lane2.speedup()
+                        self.lane3.speedup()
+                        self.lane4.speedup()
+                    if event.key == pygame.K_DOWN:
+                        self.background.slowdown()
+                        self.lane1.slowdown()
+                        self.lane2.slowdown()
+                        self.lane3.slowdown()
+                        self.lane4.slowdown()
 
             #Checks if the driver has collided with any lane sprite
             ###### Doesn't work yet
