@@ -10,7 +10,7 @@ class Driver(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.image = pygame.image.load('assets/' + 'taxi.png').convert_alpha()
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(left = self.x, top = self.y)
 
     def moveLeft(self):
         #Decreases the driver object's x value by 5, moving it left

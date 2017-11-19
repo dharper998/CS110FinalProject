@@ -36,7 +36,7 @@ class Traffic(pygame.sprite.Sprite):
         self.y = random.randrange(-2000, -500)
         self.randomspeed = random.choice(self.speeds)
         self.image = random.choice(self.imagelist)
-        self.rect = self.image.get_rect(topleft = (self.x, self.y))
+        self.rect = self.image.get_rect(left = self.x, top = self.y)
 
     def speedup(self):
         if self.speeds[-1] < 5.0:
