@@ -7,7 +7,7 @@ class Traffic(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         #initializes a traffic sprite off the top of the screen at the given x value for its lane
-        self.y = -200
+        self.y = random.randrange(-2000, -500)
         self.x = x
 
         #Chooses a random speed from 6 through 10 for the traffic object
@@ -23,22 +23,23 @@ class Traffic(pygame.sprite.Sprite):
         self.image = random.choice(self.imagelist)
 
         #Gets the appropriate rectangle for the object based on the chosen image
-        self.rect = self.image.get_rect()
-
+        self.rect = self.image.get_rect(left = self.x, top = self.y)
 
     def drive(self):
         #Increases the object y value by the current speed, moving it toward the bottom of the screen
         self.y += float(self.randomspeed)
+        print(self.x, self.y)
+        self.rect.move_ip(0, float(self.randomspeed))
 
     def reset(self):
         #Moves the object back to the origin position off the top of the screen and gives it a new random speed and image
         self.y = random.randrange(-2000, -500)
         self.randomspeed = random.choice(self.speeds)
         self.image = random.choice(self.imagelist)
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(topleft = (self.x, self.y))
 
     def speedup(self):
-        if self.speeds[-1] < 6.0:
+        if self.speeds[-1] < 5.0:
             self.speeds = [i + 0.10 for i in self.speeds]
             self.randomspeed += 0.10
         print(self.speeds)

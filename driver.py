@@ -13,9 +13,11 @@ class Driver(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def moveLeft(self):
-        #Decreases the driver object's x value by 10, moving it left
-        self.x -= 10
+        #Decreases the driver object's x value by 5, moving it left
+        self.x -= 5
+        self.rect.move_ip(-5, 0)
 
     def moveRight(self):
         #Increases the driver object's x value by 10, moving it right
-        self.x += 10
+        self.x += 5
+        self.rect.move_ip(5, 0)

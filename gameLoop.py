@@ -73,12 +73,18 @@ class GameLoop:
                         self.lane3.slowdown()
                         self.lane4.slowdown()
 
+            print(self.drivercar.rect)
+            print(self.lane1.rect)
+            print(self.lane2.rect)
+            print(self.lane3.rect)
+            print(self.lane4.rect)
+
             #Checks if the driver has collided with any lane sprite
             ###### Doesn't work yet
-            #for lane in self.lanegroup:
-                #if pygame.sprite.collide_rect(self.drivercar, lane) == True:
-                    #quit = True
-                    #break
+            for lane in self.lanegroup:
+                if pygame.sprite.collide_rect(self.drivercar, lane) == True:
+                    quit = True
+                    break
             ######
 
             #Update the surface
