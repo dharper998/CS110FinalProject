@@ -5,7 +5,8 @@ class TitleScreen:
 		self.StevenCarx = -50
         self.y = 300
 		self.ColinCarx = 1850
-		self.stcdevenimage = pygame.image.load("steven_police.png")
+		self.stevenimage = pygame.image.load("steven_police.png")
+
 	def menu_loop(self):
 		self.gamedisplay.bit(self.stevenimage,(self.StevenCarx, self.y))
 		quit = False
@@ -18,14 +19,16 @@ class TitleScreen:
 		while quit:
 			break
         #########
-	def button(self, msg , x, y, w, h, ic, ac):
+
+	def button(self, msg, x, y, w, h, ic, ac):
 		mouse = pygame.mouse.get_pos()
 		click = pygame.mouse.get_pressed()
+
 		if x+w > mouse[0] > x and y+h > mouse[1] > y:
 			pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
+
 		else:
 			pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-
 			smallText = pygame.font.Font("freesansbold.ttf",20)
 			textSurf, textRect = text_objects(msg, smallText)
 			textRect.center = ( (x+(w/2)), (y+(h/2)) )
