@@ -9,7 +9,7 @@ class Background:
 		self.speed = 3.0
 
 	def scroll(self):
-		self.y += (self.speed)
+		self.y += self.speed
 
 	def reset(self):
 		self.y = -650
