@@ -32,7 +32,7 @@ class TitleScreen:
                 self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
 
             #Update the buttons
-            self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
+            self.button("Restart", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
             self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
 
             #Display the updated view
