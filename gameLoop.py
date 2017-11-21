@@ -4,6 +4,7 @@ import gameSetup
 import pygame
 from pygame.locals import *
 import background
+import mainMenuLoop
 
 class GameLoop:
     def __init__(self):
@@ -23,6 +24,10 @@ class GameLoop:
         pygame.key.set_repeat(20, 10)
         pygame.key.get_repeat()
         quit = False
+        slowcount = 0
+
+        mainMenuLoop.TitleScreen(gamedisplay)
+
         while not quit:
             #For each lane object, if it is still on the screen it drives toward the bottom, otherwise it is reset
             if self.lane1.y < 900:
@@ -74,18 +79,27 @@ class GameLoop:
                         self.lane4.slowdown()
 
             #print(self.drivercar.rect)
-            print(self.lane1.rect)
-            print(self.lane2.rect)
-            print(self.lane3.rect)
-            print(self.lane4.rect)
+            #print(self.lane1.rect)
+            #print(self.lane2.rect)
+            #print(self.lane3.rect)
+            #print(self.lane4.rect)
 
-            #Checks if the driver has collided with any lane sprite
-            ###### Doesn't work yet
             for lane in self.lanegroup:
                 if pygame.sprite.collide_rect(self.drivercar, lane) == True:
                     quit = True
                     break
-            ######
+
+            if self.drivercar.x <= 70 or self.drivercar.x >= 580:
+                quit = True
+                break
+
+            if self.lane1.speeds[0] <= 0.5:
+                slowcount += 1
+            else: slowcount = 0
+
+            if slowcount == 500:
+                quit = True
+                break
 
             #Update the surface
             self.gamedisplay.fill((255, 255, 255))
