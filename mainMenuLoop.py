@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 class TitleScreen:
 	def __init__(self, gamedisplay):
 		self.gamedisplay = gamedisplay()
