@@ -14,6 +14,7 @@ class GameLoop:
         self.gamedisplay = self.game.gamedisplay
         self.drivercar = driver.Driver(500, 400)
         self.background = background.Background()
+        self.mainmenu = mainMenuLoop.TitleScreen(self.gamedisplay)
         self.lane1 = traffic.Traffic(110)
         self.lane2 = traffic.Traffic(230)
         self.lane3 = traffic.Traffic(370)
@@ -26,9 +27,15 @@ class GameLoop:
         quit = False
         slowcount = 0
 
-        mainMenuLoop.TitleScreen(gamedisplay)
+        self.mainmenu.menu_loop()
+        fullquit = self.mainmenu.fullquit
 
         while not quit:
+
+            if fullquit == True:
+                quit = True
+                break
+
             #For each lane object, if it is still on the screen it drives toward the bottom, otherwise it is reset
             if self.lane1.y < 900:
                 self.lane1.drive()
@@ -97,15 +104,14 @@ class GameLoop:
                 slowcount += 1
             else: slowcount = 0
 
-            if slowcount == 500:
+            if slowcount == 750:
                 quit = True
                 break
 
             #Update the surface
-            self.gamedisplay.fill((255, 255, 255))
+            self.gamedisplay.blit(self.background.image, (self.background.x, self.background.y))
 
             #Update the models
-            self.gamedisplay.blit(self.background.image, (self.background.x, self.background.y))
             self.gamedisplay.blit(self.drivercar.image, (self.drivercar.x, self.drivercar.y))
             self.gamedisplay.blit(self.lane1.image, (self.lane1.x, int(self.lane1.y)))
             self.gamedisplay.blit(self.lane2.image, (self.lane2.x, int(self.lane2.y)))

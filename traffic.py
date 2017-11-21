@@ -16,10 +16,10 @@ class Traffic(pygame.sprite.Sprite):
         self.randomspeed = random.choice(self.speeds)
 
         #Chooses a random image for the traffic objects appearance
-        self.trafficimage1 = pygame.image.load('assets/' + "Black_viper.png").convert_alpha()
-        self.trafficimage2 = pygame.image.load('assets/' + "Mini_van.png").convert_alpha()
-        self.trafficimage3 = pygame.image.load('assets/' + "Mini_truck.png").convert_alpha()
-        self.trafficimage4 = pygame.image.load('assets/' + "truck.png").convert_alpha()
+        self.trafficimage1 = pygame.image.load("assets/Black_viper.png").convert_alpha()
+        self.trafficimage2 = pygame.image.load("assets/Mini_van.png").convert_alpha()
+        self.trafficimage3 = pygame.image.load("assets/Mini_truck.png").convert_alpha()
+        self.trafficimage4 = pygame.image.load("assets/truck.png").convert_alpha()
         self.imagelist = [self.trafficimage1, self.trafficimage2, self.trafficimage3, self.trafficimage4]
         self.image = random.choice(self.imagelist)
 
@@ -40,11 +40,13 @@ class Traffic(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(left = (self.x + 75), top = (int(self.y) + 20), width = 90, height = 210)
 
     def speedup(self):
+        #Increases the value of all speeds by 0.10 if the max speed is less than 5
         if self.speeds[-1] < 5.0:
             self.speeds = [i + 0.10 for i in self.speeds]
             self.randomspeed += 0.10
 
     def slowdown(self):
+        #Decreases the value of all speeds by 0.10 if the max speed is greater than 0.5
         if self.speeds[0] > 0.5:
-            self.speeds = [round(i - 0.10, 2) for i in self.speeds]
+            self.speeds = [i - 0.10 for i in self.speeds]
             self.randomspeed -= 0.10

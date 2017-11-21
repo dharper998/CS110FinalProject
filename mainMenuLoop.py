@@ -4,29 +4,69 @@ from pygame.locals import *
 class TitleScreen:
     def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
-        self.StevenCarx = -50
         self.y = 300
-        self.ColinCarx = 1850
-        self.stevenimage = pygame.image.load("steven_police.png")
+        self.stevencarx = -50
+        self.colincarx = 1850
+        self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
 
     def menu_loop(self):
-        self.gamedisplay.bit(self.stevenimage,(self.StevenCarx, self.y))
-        quit = False
-        while not quit:
-            for i in range(10):
-                self.StevenCarx += 10
-                self.gamedisplay.blit(self.stevenimage, (self.StevenCarx, self.y))
+        self.quit = False
+        self.fullquit = False
+        while not self.quit:
 
-    def button(self, msg, x, y, w, h, ic, ac):
+            #Loop through the queue of events and check if the quit button has been pressed
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.quit = True
+                    self.fullquit = True
+
+            #If the window is closed
+            if self.fullquit == True:
+                pygame.quit()
+                break
+
+            #Update the background
+            self.gamedisplay.fill((255, 255, 255))
+
+            #Update the models
+            self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
+            for i in range(10):
+                self.stevencarx += 1
+                self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
+
+            #Update the buttons
+            self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
+            self.button("How To Play", 300, 100, 100, 100, (0, 0, 175), (0, 0, 255), "HTP")
+            self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
+
+            #Display the updated view
+            pygame.display.flip()
+
+    def button(self, msg, x, y, width, height, ic, ac, buttontype):
+        #Get the position and state of the mouse
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
-        if x+w > mouse[0] > x and y+h > mouse[1] > y:
-            pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
+        #Initialize fonts, text surface, and text rectangle
+        smalltext = pygame.font.Font("freesansbold.ttf", 20)
+        textSurf = smalltext.render(msg, True, (0, 0, 0))
+        textRect = textSurf.get_rect()
+        textRect.center = ((x + (width / 2)), (y + (height / 2)))
 
+        #If the mouse position is in the button, draw the active color on top
+        if x + width > mouse[0] > x and y + height > mouse[1] > y:
+            pygame.draw.rect(self.gamedisplay, ac, (x, y, width, height))
+            self.gamedisplay.blit(textSurf, textRect)
+
+            #If the mouse is clicked, check which button is pressed and perform the appropriate action
+            if click[0] == 1 and buttontype == "Start":
+                self.quit = True
+            #elif click[0] == 1 and buttontype == "HTP":
+                #####ADD CALL TO HOW TO PLAY SCREEN HERE#####
+            elif click[0] == 1 and buttontype == "Quit":
+                self.fullquit = True
+
+        #If the mouse position is outside the button, draw the inactive color on top
         else:
-            pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-            smallText = pygame.font.Font("freesansbold.ttf",20)
-            textSurf, textRect = text_objects(msg, smallText)
-            textRect.center = ( (x+(w/2)), (y+(h/2)) )
-            gameDisplay.blit(textSurf, textRect)
+            pygame.draw.rect(self.gamedisplay, ic, (x, y, width, height))
+            self.gamedisplay.blit(textSurf, textRect)
