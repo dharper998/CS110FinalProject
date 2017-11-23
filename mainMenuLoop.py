@@ -13,7 +13,6 @@ class TitleScreen:
         self.quit = False
         self.fullquit = False
         while not self.quit:
-
             #Loop through the queue of events and check if the quit button has been pressed
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

@@ -21,3 +21,8 @@ class Driver(pygame.sprite.Sprite):
         #Increases the driver object's x value by 10, moving it right
         self.x += 5
         self.rect.move_ip(5, 0)
+
+    def reset(self):
+        self.x = 500
+        self.y = 400
+        self.rect = self.image.get_rect(left = (self.x + 63), top = (self.y + 14), width = 77, height = 180)

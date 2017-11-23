@@ -7,9 +7,6 @@ class Traffic(pygame.sprite.Sprite):
     def __init__(self, x):
         pygame.sprite.Sprite.__init__(self)
 
-        #Set the number of cars dodged to 0
-        self.dodged = 0
-
         #initializes a traffic sprite off the top of the screen at the given x value for its lane
         self.y = random.randrange(-2000.0, -500.0)
         self.x = x
@@ -41,7 +38,6 @@ class Traffic(pygame.sprite.Sprite):
         self.randomspeed = random.choice(self.speeds)
         self.image = random.choice(self.imagelist)
         self.rect = self.image.get_rect(left = (self.x + 75), top = (int(self.y) + 20), width = 90, height = 210)
-        self.dodged += 1
 
     def speedup(self):
         #Increases the value of all speeds by 0.10 if the max speed is less than 5
@@ -54,3 +50,6 @@ class Traffic(pygame.sprite.Sprite):
         if self.speeds[0] > 0.5:
             self.speeds = [i - 0.10 for i in self.speeds]
             self.randomspeed -= 0.10
+
+    def speedreset(self):
+        self.speeds = [1.0, 2.0, 3.0]
