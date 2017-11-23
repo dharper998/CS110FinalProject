@@ -11,4 +11,3 @@ class GameSetup:
     def setup(self):
         pygame.init()
         pygame.display.set_caption('Title')
-        driver_width = 73

@@ -8,9 +8,11 @@ import mainMenuLoop
 
 class GameLoop:
     def __init__(self):
+        #Run the game window setup
         self.game = gameSetup.GameSetup()
         self.game.setup()
 
+        #Initialize all needed objects
         self.gamedisplay = self.game.gamedisplay
         self.drivercar = driver.Driver(500, 400)
         self.background = background.Background()
@@ -19,19 +21,24 @@ class GameLoop:
         self.lane2 = traffic.Traffic(230)
         self.lane3 = traffic.Traffic(370)
         self.lane4 = traffic.Traffic(500)
+
+        #Group the lane objects together
         self.lanegroup = pygame.sprite.Group(self.lane1, self.lane2, self.lane3, self.lane4)
 
     def loop(self):
+        #After a key is held down for 20 milliseconds, enter a new event of that key every 10 milliseconds
         pygame.key.set_repeat(20, 10)
         pygame.key.get_repeat()
+
         quit = False
         slowcount = 0
 
+        #Run the main menu loop and determine if the game should be fully quit
         self.mainmenu.menu_loop()
         fullquit = self.mainmenu.fullquit
 
         while not quit:
-
+            #If the user chooses to fully quit from the main menu, quit the loop
             if fullquit == True:
                 quit = True
                 break
@@ -68,16 +75,20 @@ class GameLoop:
                     quit = True
                     break
                 if event.type == pygame.KEYDOWN:
+                    #Move the driver left if the left key is pressed
                     if event.key == pygame.K_LEFT:
                         self.drivercar.moveLeft()
+                    #Move the driver right if the right key is pressed
                     if event.key == pygame.K_RIGHT:
                         self.drivercar.moveRight()
+                    #Increase the speed if the up key is pressed
                     if event.key == pygame.K_UP:
                         self.background.speedup()
                         self.lane1.speedup()
                         self.lane2.speedup()
                         self.lane3.speedup()
                         self.lane4.speedup()
+                    #Decrease the speed if the down key is pressed
                     if event.key == pygame.K_DOWN:
                         self.background.slowdown()
                         self.lane1.slowdown()
@@ -91,19 +102,23 @@ class GameLoop:
             #print(self.lane3.rect)
             #print(self.lane4.rect)
 
+            #Loop through the lane group and see if the driver has collided with any lane object
             for lane in self.lanegroup:
                 if pygame.sprite.collide_rect(self.drivercar, lane) == True:
                     quit = True
                     break
 
+            #If the drivercar collides with the left or right wall of the background, quit the loop
             if self.drivercar.x <= 70 or self.drivercar.x >= 580:
                 quit = True
                 break
 
+            #If the lowest speed for the lane objects is the lowest possible, start a count
             if self.lane1.speeds[0] <= 0.5:
                 slowcount += 1
             else: slowcount = 0
 
+            #If the slow count reaches 750 frames, quit the loop
             if slowcount == 750:
                 quit = True
                 break
