@@ -8,11 +8,12 @@ class TitleScreen:
         self.stevencarx = -50
         self.colincarx = 1850
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
-
+        self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
     def menu_loop(self):
         self.quit = False
         self.fullquit = False
         while not self.quit:
+
             #Loop through the queue of events and check if the quit button has been pressed
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -25,7 +26,7 @@ class TitleScreen:
                 break
 
             #Update the background
-            self.gamedisplay.fill((255, 255, 255))
+            self.gamedisplay.blit(self.background, (0,0))
 
             #Update the models
             self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
