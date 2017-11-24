@@ -4,7 +4,6 @@ from pygame.locals import *
 class CrashMenuLoop:
     def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
-
     def crash_loop(self):
         self.restart = True
         self.quit = False
@@ -22,7 +21,14 @@ class CrashMenuLoop:
                 break
 
             #Update the background
-            self.gamedisplay.fill((255, 255, 255))
+            self.gamedisplay.fill((0, 0, 0))
+
+            #background text
+            myfont = pygame.font.SysFont("monospace", 20)
+
+            # render text
+            label = myfont.render("Whats worse than raining cats and dogs? Hailing your Taxi.", 1, (255,255,255))
+            self.gamedisplay.blit(label, (50, 50))
 
             #Update the buttons
             self.button("Restart", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Restart")
