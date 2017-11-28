@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import howto
 
 class TitleScreen:
     def __init__(self, gamedisplay):
@@ -9,9 +10,12 @@ class TitleScreen:
         self.colincarx = 1850
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
+        self.howto = howto.HowToPlay()
     def menu_loop(self):
         self.quit = False
         self.fullquit = False
+        self.htp = False
+        self.framecount = 0
         while not self.quit:
 
             #Loop through the queue of events and check if the quit button has been pressed
@@ -20,25 +24,29 @@ class TitleScreen:
                     self.quit = True
                     self.fullquit = True
 
-            #If the window is closed
+            #If the quit button is pressed, fully quit the game
             if self.fullquit == True:
                 pygame.quit()
                 break
+
+            if self.htp == True:
+                self.howto.htp_loop()
 
             #Update the background
             self.gamedisplay.blit(self.background, (0,0))
 
             #Update the models
-            for i in range(2):
+            self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
+            for i in range(10):
+                self.stevencarx += 1
                 self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
-                for i in range(10):
-                    self.stevencarx += 1
-                    self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
+
 
             #Update the buttons
             self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
             self.button("How To Play", 300, 100, 100, 100, (0, 0, 175), (0, 0, 255), "HTP")
             self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
+
 
             #Display the updated view
             pygame.display.flip()
@@ -62,8 +70,8 @@ class TitleScreen:
             #If the mouse is clicked, check which button is pressed and perform the appropriate action
             if click[0] == 1 and buttontype == "Start":
                 self.quit = True
-            #elif click[0] == 1 and buttontype == "HTP":
-                #####ADD CALL TO HOW TO PLAY SCREEN HERE#####
+            elif click[0] == 1 and buttontype == "HTP":
+                self.htp = True
             elif click[0] == 1 and buttontype == "Quit":
                 self.fullquit = True
 
