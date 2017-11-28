@@ -24,6 +24,8 @@ class GameLoop:
         self.lane3 = traffic.Traffic(370)
         self.lane4 = traffic.Traffic(500)
 
+        self.dodged = 0
+
         #Group the lane objects together
         self.lanegroup = pygame.sprite.Group(self.lane1, self.lane2, self.lane3, self.lane4)
 
@@ -35,7 +37,6 @@ class GameLoop:
         restart = True
         quit = False
         slowcount = 0
-        dodged = 0
 
         #Run the main menu loop and determine if the game should be fully quit
         self.mainmenu.menu_loop()
@@ -43,6 +44,9 @@ class GameLoop:
 
         while restart:
             while not quit:
+
+                print(self.dodged)
+
                 #If the user chooses to fully quit from the main menu, quit the loop
                 if fullquit == True:
                     restart = False
@@ -54,25 +58,25 @@ class GameLoop:
                     self.lane1.drive()
                 else:
                     self.lane1.reset()
-                    dodged += 1
+                    self.dodged += 1
 
                 if self.lane2.y < 900:
                     self.lane2.drive()
                 else:
                     self.lane2.reset()
-                    dodged += 1
+                    self.dodged += 1
 
                 if self.lane3.y < 900:
                     self.lane3.drive()
                 else:
                     self.lane3.reset()
-                    dodged += 1
+                    self.dodged += 1
 
                 if self.lane4.y < 900:
                     self.lane4.drive()
                 else:
                     self.lane4.reset()
-                    dodged += 1
+                    self.dodged += 1
 
                 if self.background.y < 0:
                     self.background.scroll()
@@ -108,22 +112,18 @@ class GameLoop:
                             self.lane3.slowdown()
                             self.lane4.slowdown()
 
-                #print(self.drivercar.rect)
-                #print(self.lane1.rect)
-                #print(self.lane2.rect)
-                #print(self.lane3.rect)
-                #print(self.lane4.rect)
-
                 #Loop through the lane group and see if the driver has collided with any lane object
                 for lane in self.lanegroup:
                     if pygame.sprite.collide_rect(self.drivercar, lane) == True:
-                        self.crashmenu.crash_loop()
+                        self.crashmenu.crash_loop(self.dodged)
+                        self.dodged = 0
                         quit = True
                         break
 
                 #If the drivercar collides with the left or right wall of the background, quit the loop
                 if self.drivercar.x <= 70 or self.drivercar.x >= 580:
-                    self.crashmenu.crash_loop()
+                    self.crashmenu.crash_loop(self.dodged)
+                    self.dodged = 0
                     quit = True
                     break
 
@@ -134,7 +134,8 @@ class GameLoop:
 
                 #If the slow count reaches 750 frames, quit the loop
                 if slowcount == 750:
-                    self.crashmenu.crash_loop()
+                    self.crashmenu.crash_loop(self.dodged)
+                    self.dodged = 0
                     quit = True
                     break
 
@@ -147,7 +148,6 @@ class GameLoop:
                 self.gamedisplay.blit(self.lane2.image, (self.lane2.x, int(self.lane2.y)))
                 self.gamedisplay.blit(self.lane3.image, (self.lane3.x, int(self.lane3.y)))
                 self.gamedisplay.blit(self.lane4.image, (self.lane4.x, int(self.lane4.y)))
-
 
                 #Display the updated view
                 pygame.display.flip()

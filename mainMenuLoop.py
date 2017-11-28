@@ -11,6 +11,7 @@ class TitleScreen:
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
         self.howto = howto.HowToPlay(gamedisplay)
+        
     def menu_loop(self):
         self.quit = False
         self.fullquit = False

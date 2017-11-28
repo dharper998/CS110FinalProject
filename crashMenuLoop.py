@@ -4,10 +4,12 @@ from pygame.locals import *
 class CrashMenuLoop:
     def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
-    def crash_loop(self):
+
+    def crash_loop(self, dodged):
         self.restart = True
         self.quit = False
         self.fullquit = False
+        self.dodged = dodged
         while not self.quit:
             #Loop through the queue of events and check if the quit button has been pressed
             for event in pygame.event.get():
@@ -20,14 +22,14 @@ class CrashMenuLoop:
                 pygame.quit()
                 break
 
-            #Update the background
-
             #background text
             myfont = pygame.font.SysFont("monospace", 38)
 
-            # render text
+            #render text
             label = myfont.render("YOU CRASHED", 1, (255,255,255))
-            self.gamedisplay.blit(label, (295, 50))
+            score = myfont.render("You Dodged: " + str(self.dodged) + " Cars", 1, (255, 255, 255))
+            self.gamedisplay.blit(label, (295, 15))
+            self.gamedisplay.blit(score, (215, 50))
 
             #Update the buttons
             self.button("Restart", 235, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Restart")
