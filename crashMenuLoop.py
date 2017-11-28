@@ -21,17 +21,16 @@ class CrashMenuLoop:
                 break
 
             #Update the background
-            self.gamedisplay.fill((0, 0, 0))
 
             #background text
-            myfont = pygame.font.SysFont("monospace", 20)
+            myfont = pygame.font.SysFont("monospace", 38)
 
             # render text
-            label = myfont.render("Whats worse than raining cats and dogs? Hailing your Taxi.", 1, (255,255,255))
-            self.gamedisplay.blit(label, (50, 50))
+            label = myfont.render("YOU CRASHED", 1, (255,255,255))
+            self.gamedisplay.blit(label, (295, 50))
 
             #Update the buttons
-            self.button("Restart", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Restart")
+            self.button("Restart", 235, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Restart")
             self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
 
             #Display the updated view
