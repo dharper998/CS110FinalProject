@@ -11,6 +11,7 @@ class TitleScreen:
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
         self.howto = howto.HowToPlay(gamedisplay)
+        self.title = pygame.image.load("assets/title.png").convert_alpha()
     def menu_loop(self):
         self.quit = False
         self.fullquit = False
@@ -35,7 +36,12 @@ class TitleScreen:
 
             #Update the background
             self.gamedisplay.blit(self.background, (0,0))
-
+            
+            #add title
+            #myfont = pygame.font.SysFont("impact", 100)
+            #label = myfont.render("Colin's Wild Ride", 1, (0,0,0))
+            #self.gamedisplay.blit(label, (140, 80))
+            self.gamedisplay.blit(self.title, (-25,0))
             #Update the models
             if self.stevencarx == 2000:
                 self.stevencarx = -1000
@@ -46,9 +52,9 @@ class TitleScreen:
 
 
             #Update the buttons
-            self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
-            self.button("How To Play", 300, 100, 150, 100, (0, 0, 175), (0, 0, 255), "HTP")
-            self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
+            self.button("Start!", 100, 300, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
+            self.button("How To Play", 350, 300, 150, 100, (0, 0, 175), (0, 100, 255), "HTP")
+            self.button("Quit", 650, 300, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
 
 
             #Display the updated view
