@@ -10,4 +10,4 @@ class GameSetup:
 
     def setup(self):
         pygame.init()
-        pygame.display.set_caption('Title')
+        pygame.display.set_caption("Colin's Wild Ride")

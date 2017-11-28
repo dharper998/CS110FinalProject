@@ -27,6 +27,8 @@ class GameLoop:
         self.scorefont = pygame.font.SysFont("monospace", 20)
         self.dodged = 0
 
+        pygame.mixer.music.load("assets/race_music.mp3")
+
         #Group the lane objects together
         self.lanegroup = pygame.sprite.Group(self.lane1, self.lane2, self.lane3, self.lane4)
 
@@ -38,6 +40,8 @@ class GameLoop:
         restart = True
         quit = False
         slowcount = 0
+
+        pygame.mixer.music.play(-1)
 
         #Run the main menu loop and determine if the game should be fully quit
         self.mainmenu.menu_loop()
@@ -113,6 +117,7 @@ class GameLoop:
                 #Loop through the lane group and see if the driver has collided with any lane object
                 for lane in self.lanegroup:
                     if pygame.sprite.collide_rect(self.drivercar, lane) == True:
+                        pygame.mixer.music.stop()
                         self.crashmenu.crash_loop(self.dodged)
                         self.dodged = 0
                         quit = True
@@ -120,6 +125,7 @@ class GameLoop:
 
                 #If the drivercar collides with the left or right wall of the background, quit the loop
                 if self.drivercar.x <= 70 or self.drivercar.x >= 580:
+                    pygame.mixer.music.stop()
                     self.crashmenu.crash_loop(self.dodged)
                     self.dodged = 0
                     quit = True
@@ -132,6 +138,7 @@ class GameLoop:
 
                 #If the slow count reaches 750 frames, quit the loop
                 if slowcount == 750:
+                    pygame.mixer.music.stop()
                     self.crashmenu.crash_loop(self.dodged)
                     self.dodged = 0
                     quit = True
@@ -152,6 +159,7 @@ class GameLoop:
                     tooslow = self.slowfont.render("Too Slow!", 1, (255, 0, 0))
                     self.gamedisplay.blit(tooslow, (350, 20))
 
+                #Display the current score on a black background at the bottom left of the screen
                 score = self.scorefont.render("Score: " + str(self.dodged), 1, (255, 255, 255))
                 if self.dodged < 10:
                     pygame.draw.rect(self.gamedisplay, (0, 0, 0), (5, 605, 105, 30))
@@ -160,7 +168,9 @@ class GameLoop:
 
                 #Display the updated view
                 pygame.display.flip()
+
             if not fullquit:
+
                 restart = self.crashmenu.restart
                 if restart == True:
                     slowcount = 0
@@ -175,6 +185,8 @@ class GameLoop:
                     self.lane4.reset()
                     self.lane4.speedreset()
                     self.background.speedreset()
+                    pygame.mixer.music.load("assets/race_music.mp3")
+                    pygame.mixer.music.play(-1)
 
             else:
                 restart = False
