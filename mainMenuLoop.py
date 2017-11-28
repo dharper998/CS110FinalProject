@@ -37,6 +37,8 @@ class TitleScreen:
             self.gamedisplay.blit(self.background, (0,0))
 
             #Update the models
+            if self.stevencarx == 2000:
+                self.stevencarx = -1000
             self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
             for i in range(10):
                 self.stevencarx += 1
@@ -45,7 +47,7 @@ class TitleScreen:
 
             #Update the buttons
             self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
-            self.button("How To Play", 300, 100, 100, 100, (0, 0, 175), (0, 0, 255), "HTP")
+            self.button("How To Play", 300, 100, 150, 100, (0, 0, 175), (0, 0, 255), "HTP")
             self.button("Quit", 500, 100, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
 
 
