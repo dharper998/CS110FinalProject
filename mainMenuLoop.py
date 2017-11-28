@@ -5,7 +5,7 @@ class TitleScreen:
     def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
         self.y = 300
-        self.stevencarx = -50
+        self.stevencarx = -1000
         self.colincarx = 1850
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
@@ -29,10 +29,11 @@ class TitleScreen:
             self.gamedisplay.blit(self.background, (0,0))
 
             #Update the models
-            self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
-            for i in range(10):
-                self.stevencarx += 1
+            for i in range(2):
                 self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
+                for i in range(10):
+                    self.stevencarx += 1
+                    self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
 
             #Update the buttons
             self.button("Start!", 100, 100, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
