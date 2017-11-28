@@ -1,3 +1,11 @@
+import driver
+import traffic
+import pygame
+from pygame.locals import *
+import gameSetup
+import gameLoop
+
+
 def main():
 	print("#testing driver car model#")
 	test_driver=driver.Driver()
@@ -38,14 +46,7 @@ def main():
 
 	print('#game screen test#')
 	test_gameSetup.setup()
-	assert test_gameSetup.driver_width()==73
-
-	print('#testing gameLoop model#')
-	test_gameLoop=gameLoop.Gameloop()
-
-	print('#testing loop#')
-	test_gameLoop.loop()
-	assert test_gameLoop.gamedisplay.fill==(255,255,255)
+	assert test_gameSetup.display_width()==840
 
 	print('#testing background model#')
 	test_background=background.Background()
