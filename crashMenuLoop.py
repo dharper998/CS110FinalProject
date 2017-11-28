@@ -2,15 +2,22 @@ import pygame
 from pygame.locals import *
 
 class CrashMenuLoop:
+     
     def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
 
     def crash_loop(self, dodged):
+
         self.restart = True
         self.quit = False
         self.fullquit = False
         self.dodged = dodged
+        
+        #Crash mp3 plays
+        pygame.mixer.music.load('assets/crash_sound.mp3')
+        pygame.mixer.music.play(0)
         while not self.quit:
+
             #Loop through the queue of events and check if the quit button has been pressed
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
