@@ -23,6 +23,7 @@ class GameLoop:
         self.lane2 = traffic.Traffic(230)
         self.lane3 = traffic.Traffic(370)
         self.lane4 = traffic.Traffic(500)
+        self.slowfont = pygame.font.SysFont("monospace", 30)
         self.scorefont = pygame.font.SysFont("monospace", 20)
         self.dodged = 0
 
@@ -44,9 +45,6 @@ class GameLoop:
 
         while restart:
             while not quit:
-
-                print(self.dodged)
-
                 #If the user chooses to fully quit from the main menu, quit the loop
                 if fullquit == True:
                     restart = False
@@ -149,8 +147,16 @@ class GameLoop:
                 self.gamedisplay.blit(self.lane3.image, (self.lane3.x, int(self.lane3.y)))
                 self.gamedisplay.blit(self.lane4.image, (self.lane4.x, int(self.lane4.y)))
 
+                #If the driver is moving at the slowest speed, display a message
+                if slowcount > 0:
+                    tooslow = self.slowfont.render("Too Slow!", 1, (255, 0, 0))
+                    self.gamedisplay.blit(tooslow, (350, 20))
+
                 score = self.scorefont.render("Score: " + str(self.dodged), 1, (255, 255, 255))
-                self.gamedisplay.blit(score, (15, 610))
+                if self.dodged < 10:
+                    pygame.draw.rect(self.gamedisplay, (0, 0, 0), (5, 605, 105, 30))
+                else: pygame.draw.rect(self.gamedisplay, (0, 0, 0), (5, 605, 115, 30))
+                self.gamedisplay.blit(score, (10, 610))
 
                 #Display the updated view
                 pygame.display.flip()

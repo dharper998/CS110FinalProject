@@ -25,6 +25,10 @@ class CrashMenuLoop:
             #background text
             myfont = pygame.font.SysFont("monospace", 38)
 
+            if self.dodged < 10:
+                pygame.draw.rect(self.gamedisplay, (0, 0, 0), (200, 10, 440, 85))
+            else: pygame.draw.rect(self.gamedisplay, (0, 0, 0), (200, 10, 460, 85))
+
             #render text
             label = myfont.render("YOU CRASHED", 1, (255,255,255))
             score = myfont.render("You Dodged: " + str(self.dodged) + " Cars", 1, (255, 255, 255))
