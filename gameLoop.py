@@ -23,7 +23,7 @@ class GameLoop:
         self.lane2 = traffic.Traffic(230)
         self.lane3 = traffic.Traffic(370)
         self.lane4 = traffic.Traffic(500)
-
+        self.scorefont = pygame.font.SysFont("monospace", 20)
         self.dodged = 0
 
         #Group the lane objects together
@@ -148,6 +148,9 @@ class GameLoop:
                 self.gamedisplay.blit(self.lane2.image, (self.lane2.x, int(self.lane2.y)))
                 self.gamedisplay.blit(self.lane3.image, (self.lane3.x, int(self.lane3.y)))
                 self.gamedisplay.blit(self.lane4.image, (self.lane4.x, int(self.lane4.y)))
+
+                score = self.scorefont.render("Score: " + str(self.dodged), 1, (255, 255, 255))
+                self.gamedisplay.blit(score, (15, 610))
 
                 #Display the updated view
                 pygame.display.flip()

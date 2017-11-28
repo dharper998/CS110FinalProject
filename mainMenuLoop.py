@@ -11,11 +11,8 @@ class TitleScreen:
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
         self.howto = howto.HowToPlay(gamedisplay)
-<<<<<<< HEAD
-        
-=======
         self.title = pygame.image.load("assets/title.png").convert_alpha()
->>>>>>> a24fc579a713a07a492a673aed310531accbe568
+
     def menu_loop(self):
         self.quit = False
         self.fullquit = False
@@ -40,12 +37,10 @@ class TitleScreen:
 
             #Update the background
             self.gamedisplay.blit(self.background, (0,0))
-            
+
             #add title
-            #myfont = pygame.font.SysFont("impact", 100)
-            #label = myfont.render("Colin's Wild Ride", 1, (0,0,0))
-            #self.gamedisplay.blit(label, (140, 80))
             self.gamedisplay.blit(self.title, (-25,0))
+
             #Update the models
             if self.stevencarx == 2000:
                 self.stevencarx = -1000
@@ -54,12 +49,10 @@ class TitleScreen:
                 self.stevencarx += 1
                 self.gamedisplay.blit(self.stevenimage, (self.stevencarx, self.y))
 
-
             #Update the buttons
             self.button("Start!", 100, 300, 100, 100, (0, 175, 0), (0, 255, 0), "Start")
             self.button("How To Play", 350, 300, 150, 100, (0, 0, 175), (0, 100, 255), "HTP")
             self.button("Quit", 650, 300, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
-
 
             #Display the updated view
             pygame.display.flip()
@@ -70,8 +63,8 @@ class TitleScreen:
         click = pygame.mouse.get_pressed()
 
         #Initialize fonts, text surface, and text rectangle
-        smalltext = pygame.font.Font("freesansbold.ttf", 20)
-        textSurf = smalltext.render(msg, True, (0, 0, 0))
+        buttontext = pygame.font.Font("freesansbold.ttf", 20)
+        textSurf = buttontext.render(msg, True, (0, 0, 0))
         textRect = textSurf.get_rect()
         textRect.center = ((x + (width / 2)), (y + (height / 2)))
 

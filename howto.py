@@ -29,8 +29,8 @@ class HowToPlay:
         click = pygame.mouse.get_pressed()
 
         #Initialize fonts, text surface, and text rectangle
-        smalltext = pygame.font.Font("freesansbold.ttf", 20)
-        textSurf = smalltext.render(msg, True, (0, 0, 0))
+        buttontext = pygame.font.Font("freesansbold.ttf", 20)
+        textSurf = buttontext.render(msg, True, (0, 0, 0))
         textRect = textSurf.get_rect()
         textRect.center = ((x + (width / 2)), (y + (height / 2)))
         if x + width > mouse[0] > x and y + height > mouse[1] > y:
