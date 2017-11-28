@@ -10,7 +10,7 @@ class TitleScreen:
         self.colincarx = 1850
         self.stevenimage = pygame.image.load("assets/steven_police.png").convert_alpha()
         self.background = pygame.image.load("assets/Mainscreen.png").convert_alpha()
-        self.howto = howto.HowToPlay()
+        self.howto = howto.HowToPlay(gamedisplay)
     def menu_loop(self):
         self.quit = False
         self.fullquit = False
@@ -31,6 +31,7 @@ class TitleScreen:
 
             if self.htp == True:
                 self.howto.htp_loop()
+                self.htp = False
 
             #Update the background
             self.gamedisplay.blit(self.background, (0,0))

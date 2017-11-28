@@ -1,13 +1,28 @@
 import pygame
+from pygame.locals import *
 class HowToPlay:
-    def init(self,gamedisplay):
+    def __init__(self, gamedisplay):
         self.gamedisplay = gamedisplay
         self.background = pygame.image.load("assets/howtoplay.png").convert_alpha()
+
     def htp_loop(self):
         self.quit = False
+        self.fullquit = False
         while not self.quit:
-            self.gamedisplay.blit(self.backgroun, (0,0))
-            self.button("Back", 500, 600, 100, 100, (0, 175, 0), (0, 255, 0), "Back")
+            #Loop through the queue of events and check if the quit button has been pressed
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.quit = True
+                    self.fullquit = True
+
+            #If the quit button is pressed, fully quit the game
+            if self.fullquit == True:
+                pygame.quit()
+                break
+            self.gamedisplay.blit(self.background, (0,0))
+            self.button("Back", 500, 500, 100, 100, (0, 175, 0), (0, 255, 0), "Back")
+            pygame.display.flip()
+
     def button(self, msg, x, y, width, height, ic, ac, buttontype):
         #Get the position and state of the mouse
         mouse = pygame.mouse.get_pos()
@@ -28,4 +43,4 @@ class HowToPlay:
 
         else:
             pygame.draw.rect(self.gamedisplay, ic, (x, y, width, height))
-            self.gamedisplay.blit(textSurf, textRect)                 
+            self.gamedisplay.blit(textSurf, textRect)
