@@ -33,6 +33,12 @@ class GameLoop:
         self.lanegroup = pygame.sprite.Group(self.lane1, self.lane2, self.lane3, self.lane4)
 
     def loop(self):
+        '''
+        Handles the looping of the entire game, including all objects, menus, and inputs
+        Paramlist: none
+        Return: none
+        '''
+
         #After a key is held down for 20 milliseconds, enter a new event of that key every 10 milliseconds
         pygame.key.set_repeat(20, 10)
         pygame.key.get_repeat()
@@ -41,6 +47,7 @@ class GameLoop:
         quit = False
         slowcount = 0
 
+        #Begin playing the currently loaded music
         pygame.mixer.music.play(-1)
 
         #Run the main menu loop and determine if the game should be fully quit
@@ -173,6 +180,7 @@ class GameLoop:
 
                 restart = self.crashmenu.restart
                 if restart == True:
+                    #If the user restarts the game, reinitialize all objects and variables, replay music
                     slowcount = 0
                     quit = False
                     self.drivercar.reset()

@@ -9,22 +9,43 @@ class Background:
 		self.speed = 3.0
 
 	def scroll(self):
-		#Move the background down by the current speed
+		'''
+		Moves the background down by the current speed
+		Paramlist: none
+		Return: none
+		'''
 		self.y += self.speed
 
 	def reset(self):
-		#Reset the background to its original position
+		'''
+		Resets the background to its original position
+		Paramlist: none
+		Return: none
+		'''
 		self.y = -650
 
 	def speedup(self):
-		#Increase the background speed up to a max of 5
+		'''
+		Increases the backgrounds scrolling speed to a max of 5
+		Paramlist: none
+		Return: none
+		'''
 		if self.speed < 5.0:
 			self.speed += 0.25
 
 	def slowdown(self):
-		#Decrease the background speed down to a min of 2
+		'''
+		Decreases the backgrounds scrolling speed to a min of 2
+		Paramlist: none
+		Return: none
+		'''
 		if self.speed > 2.0:
 			self.speed -= 0.25
 
 	def speedreset(self):
+		'''
+		Resets the scrolling speed to its original value
+		Paramlist: none
+		Return: none
+		'''
 		self.speed = 3.0

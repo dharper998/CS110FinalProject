@@ -9,5 +9,10 @@ class GameSetup:
         self.clock = pygame.time.Clock()
 
     def setup(self):
+        '''
+        Initializes pygame and titles the window
+        Paramlist: none
+        Return: none
+        '''
         pygame.init()
         pygame.display.set_caption("Colin's Wild Ride")

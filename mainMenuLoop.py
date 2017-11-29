@@ -14,10 +14,17 @@ class TitleScreen:
         self.title = pygame.image.load("assets/title.png").convert_alpha()
 
     def menu_loop(self):
+        '''
+        Displays the main menu
+        Paramlist: none
+        Return: none
+        '''
         self.quit = False
         self.fullquit = False
         self.htp = False
         self.framecount = 0
+
+        #If quit is true, start the game. If fullquit is true, quit the game
         while not self.quit:
 
             #Loop through the queue of events and check if the quit button has been pressed
@@ -31,6 +38,7 @@ class TitleScreen:
                 pygame.quit()
                 break
 
+            #If the how to play button is pressed, display the how to play menu
             if self.htp == True:
                 self.howto.htp_loop()
                 self.htp = False
@@ -38,7 +46,7 @@ class TitleScreen:
             #Update the background
             self.gamedisplay.blit(self.background, (0,0))
 
-            #add title
+            #Display the game title
             self.gamedisplay.blit(self.title, (-25,0))
 
             #Update the models
@@ -54,10 +62,16 @@ class TitleScreen:
             self.button("How To Play", 350, 300, 150, 100, (0, 0, 175), (0, 100, 255), "HTP")
             self.button("Quit", 650, 300, 100, 100, (175, 0, 0), (255, 0, 0), "Quit")
 
-            #Display the updated view
+            #Refresh the display
             pygame.display.flip()
 
     def button(self, msg, x, y, width, height, ic, ac, buttontype):
+        '''
+        Displays and handles interactions with a button on the screen
+        Paramlist: msg (The text on the button), x (x position of the top left corner), y (y position of the top left corner), width (width of the button), height (height of the button), ic (inactive color), ac (active color), buttontype (determines what action takes place when the button is clicked)
+        Return: none
+        '''
+
         #Get the position and state of the mouse
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
